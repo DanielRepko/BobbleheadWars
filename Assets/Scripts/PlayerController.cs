@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //making the player move using hte Input manager
         Vector3 pos = transform.position;
 
         pos.x += moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
