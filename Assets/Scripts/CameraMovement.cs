@@ -16,6 +16,7 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //makes the gameobject follow the followTarget as long as the property is not null
         if(followTarget != null)
         {
             transform.position = Vector3.Lerp(transform.position,
