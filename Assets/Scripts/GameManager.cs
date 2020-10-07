@@ -63,11 +63,10 @@ public class GameManager : MonoBehaviour
 
                         newAlien.transform.position = spawnLocation.transform.position;
 
-                        //setting the player as the target for the alien
                         Alien alienScript = newAlien.GetComponent<Alien>();
                         alienScript.target = player.transform;
 
-                        //rotating the alien to face the player
+                        //rotating the alien to face the
                         Vector3 targetRotation = new Vector3(player.transform.position.x,
                                                              newAlien.transform.position.y,
                                                              player.transform.position.z);
