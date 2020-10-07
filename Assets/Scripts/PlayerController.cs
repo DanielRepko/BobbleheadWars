@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //making sure that the player stays at the same elevation (the aliens will sometimes send him upwards when colliding with him)
+        if(transform.position.y != 12.54)
+        {
+            transform.position = new Vector3(transform.position.x, 12.54f, transform.position.z);
+        }
         //make a vector3 to hold the direction the player is moving
         Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"),
                                             0, Input.GetAxis("Vertical"));
