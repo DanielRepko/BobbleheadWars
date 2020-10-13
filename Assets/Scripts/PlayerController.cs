@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 wobbleDirection;
     public LayerMask layerMask;
     private Vector3 currentLookTarget = Vector3.zero;
+    public Animator bodyAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
         //if the player is not moving
         if(moveDirection == Vector3.zero)
         {
-            //TODO
+            bodyAnimator.SetBool("IsMoving", false);
         }
         //if moveDirection isn't zero then player must be moving
         else
@@ -59,7 +60,9 @@ public class PlayerController : MonoBehaviour
                 wobbleDirection = transform.right;
             }
             //add force to the head to make it wobble
-            head.AddForce(wobbleDirection * 150, ForceMode.Acceleration);            
+            head.AddForce(wobbleDirection * 150, ForceMode.Acceleration);
+
+            bodyAnimator.SetBool("IsMoving", true);
         }
 
         //creating a raycast
