@@ -12,6 +12,10 @@ public class Gun : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public bool isUpgraded;
+    public float upgradeTime = 10.0f;
+    private float currentTime;
+
     // Start is called before the first frame update
     void Start()
     {
