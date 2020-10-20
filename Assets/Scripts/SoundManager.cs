@@ -15,7 +15,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip powerUpAppear;
 
     public static SoundManager Instance = null;
-    private AudioSource soundEffectAudio;
+    public AudioSource soundEffectAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class SoundManager : MonoBehaviour
         AudioSource[] sources = GetComponents<AudioSource>();
         foreach(AudioSource source in sources)
         {
-            if(source.clip == null)
+            if(source.clip != null)
             {
                 soundEffectAudio = source;
             }
@@ -46,5 +46,10 @@ public class SoundManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayOneShot(AudioClip clip)
+    {
+        soundEffectAudio.PlayOneShot(clip);
     }
 }
