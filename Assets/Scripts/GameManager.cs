@@ -26,12 +26,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //code to determine if and when to spawn more aliens
         currentSpawnTime += Time.deltaTime;
         if(currentSpawnTime > generatedSpawnTime)
         {
             currentSpawnTime = 0;
             generatedSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
 
+            //if aliens can be spawned and there are not too many aliens on screen already
             if (aliensPerSpawn > 0 && aliensOnScreen < totalAliens)
             {
                 List<int> previousSpawnLocations = new List<int>();
@@ -59,14 +62,16 @@ public class GameManager : MonoBehaviour
                         }
                         GameObject spawnLocation = spawnPoints[spawnPoint];
 
+                        //instantiating the Alien prefab
                         GameObject newAlien = Instantiate(alien) as GameObject;
 
                         newAlien.transform.position = spawnLocation.transform.position;
 
+                        //setting the player as the alien's target
                         Alien alienScript = newAlien.GetComponent<Alien>();
                         alienScript.target = player.transform;
 
-                        //rotating the alien to face the
+                        //rotating the alien to face the player
                         Vector3 targetRotation = new Vector3(player.transform.position.x,
                                                              newAlien.transform.position.y,
                                                              player.transform.position.z);
