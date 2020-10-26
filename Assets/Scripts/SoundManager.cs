@@ -34,7 +34,7 @@ public class SoundManager : MonoBehaviour
         AudioSource[] sources = GetComponents<AudioSource>();
         foreach(AudioSource source in sources)
         {
-            if(source.clip != null)
+            if(source.clip == null)
             {
                 soundEffectAudio = source;
             }

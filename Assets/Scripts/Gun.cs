@@ -40,17 +40,49 @@ public class Gun : MonoBehaviour
         {
             CancelInvoke("FireBullet");
         }
+
+        currentTime += Time.deltaTime;
+        if(currentTime > upgradeTime && isUpgraded == true)
+        {
+            isUpgraded = false;
+        }
     }
 
     void FireBullet()
     {
-        //creating an instance of the bullet prefab
-        GameObject bullet = Instantiate(bulletPrefab) as GameObject;
-        //moving the bullet to the launchPosition
-        bullet.transform.position = launchPosition.position;
-        //adding velocity to the bullet (shooting it)
-        bullet.GetComponent<Rigidbody>().velocity = transform.parent.forward * 100;
-        // PlayOneShot plays the sound once but allows it to be played again and to overlap the last play
-        audioSource.PlayOneShot(SoundManager.Instance.gunFire);
+        Rigidbody bullet = CreateBullet();
+        bullet.velocity = transform.parent.forward * 100;
+
+        // if the gun is upgraded, fire two additional bullets diagonally to the sides and play the upgraded shooting sound
+        if (isUpgraded)
+        {
+            Rigidbody bullet2 = CreateBullet();
+            bullet2.velocity = (transform.right + transform.forward / 0.5f) * 100;
+            Rigidbody bullet3 = CreateBullet();
+            bullet3.velocity = (-transform.right + transform.forward / 0.5f) * 100;
+            audioSource.PlayOneShot(SoundManager.Instance.upgradedGunFire);
+        }
+        else // otherwise just play the regular shooting sound
+        {
+            audioSource.PlayOneShot(SoundManager.Instance.gunFire);
+        }
     }
+
+    //adding the code to create a bullet in its own function
+    private Rigidbody CreateBullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab);
+
+        bullet.transform.position = launchPosition.position;
+
+        return bullet.GetComponent<Rigidbody>();
+    }
+
+    public void UpgradeGun()
+    {
+        isUpgraded = true;
+        currentTime = 0;
+    }
+
+
 }
