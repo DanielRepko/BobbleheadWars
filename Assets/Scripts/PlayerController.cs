@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private int hitNumber = -1;
     public Rigidbody marineBody;
     private bool isDead = false;
+    private DeathParticles deathParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         //initializing the characterController property
         characterController = GetComponent<CharacterController>();
         wobbleDirection = transform.right;
+        deathParticles = gameObject.GetComponentInChildren<DeathParticles>();
     }
 
     // Update is called once per frame
@@ -130,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        bodyAnimator.SetBool("isMoving", false);
+        bodyAnimator.SetBool("IsMoving", false);
         marineBody.transform.parent = null;
         marineBody.isKinematic = false;
         marineBody.useGravity = true;
@@ -141,6 +143,9 @@ public class PlayerController : MonoBehaviour
         head.transform.parent = null;
         head.useGravity = true;
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.marineDeath);
+
+        deathParticles.Activate();
+
         Destroy(gameObject);
     }
 }
