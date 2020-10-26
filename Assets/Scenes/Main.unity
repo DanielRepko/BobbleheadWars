@@ -1504,6 +1504,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   bodyAnimator: {fileID: 1295336728}
+  hitForce:
+  - 0.1
+  - 0.2
+  - 0.3
+  timeBetweenHits: 2.5
+  marineBody: {fileID: 1295336727}
 --- !u!143 &961392206
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2082,6 +2088,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &1295336730
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295336725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 2.08
+  m_Height: 0.24
+  m_Direction: 1
+  m_Center: {x: -1.61, y: 3.58, z: 0}
 --- !u!1 &1343913623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2370,6 +2390,7 @@ GameObject:
   - component: {fileID: 1772256728}
   - component: {fileID: 1772256727}
   - component: {fileID: 1772256726}
+  - component: {fileID: 1772256729}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2442,6 +2463,20 @@ Transform:
   m_Father: {fileID: 2029053247}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+--- !u!114 &1772256729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772256725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efe26825c6d3b24aac340ea97076054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDecay: 0.02
+  intensity: 0.3
 --- !u!1 &1854321104
 GameObject:
   m_ObjectHideFlags: 0
