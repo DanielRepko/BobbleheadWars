@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject deathFloor;
 
+    public Animator arenaAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -126,5 +128,16 @@ public class GameManager : MonoBehaviour
     {
         aliensOnScreen -= 1;
         totalAliens -= 1;
+
+        if(totalAliens == 0)
+        {
+            Invoke("EndGame", 2.0f);
+        }
+    }
+
+    private void EndGame()
+    {
+        SoundManager.Instance.PlayOneShot(SoundManager.Instance.elevatorArrived);
+        arenaAnimator.SetTrigger("PlayerWon");
     }
 }

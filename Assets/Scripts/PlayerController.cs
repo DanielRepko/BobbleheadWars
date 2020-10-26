@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private float timeSinceHit = 0;
     private int hitNumber = -1;
     public Rigidbody marineBody;
-    private bool isDead = false;
     private DeathParticles deathParticles;
 
     // Start is called before the first frame update
